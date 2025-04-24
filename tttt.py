@@ -688,6 +688,8 @@ def main():
     traj_x_norm = x_normalizer.normalize(traj_x)
     with torch.no_grad():
         traj_y_pred = drift_net(traj_x_norm).cpu().numpy()
+    traj_y_pred = x_normalizer.denormalize(traj_y_pred)     # maybe
+
     
     # 绘制轨迹比较
     plt.figure(figsize=(15, 10))
